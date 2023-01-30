@@ -1,0 +1,44 @@
+{
+  "name": "@yet3/svg2jspdf",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "yet3",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf ./dist && tsc --project ./tsconfig.json && cp ./src/custom.d.ts ./dist/index.d.ts",
+    "dev": "ts-node ./src/index.ts",
+    "test": "jest",
+    "format": "prettier --write ./src/**/*.ts",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "@types/svg-parser": "^2.0.3",
+    "husky": "^8.0.3",
+    "prettier": "^2.8.3",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "jest": "^29.4.1",
+    "jspdf": "^2.5.1",
+    "svg-parser": "^2.0.4"
+  },
+  "keywords": [
+    "jspdf",
+    "pdf",
+    "svg",
+    "svg to pdf",
+    "svg2pdf"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yet3/svg2jspdf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yet3/svg2jspdf/issues"
+  },
+  "homepage": "https://github.com/yet3/svg2jspdf#readme"
+}
