@@ -35,7 +35,7 @@ export const getSvgElements = (
         });
       }
 
-      if (el.children) {
+      if (el.children && !["defs"].includes(el.tagName ?? "")) {
         getSvgElements(handlers, el.children, d, svgEl);
       }
     }
