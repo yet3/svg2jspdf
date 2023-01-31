@@ -24,12 +24,12 @@ setSvg2PdfHandler("line", svgLineHandler);
 setSvg2PdfHandler("rect", svgRectHandler);
 setSvg2PdfHandler("circle", svgCircleHandler);
 
-const handleAddSvgFromString = (p: { doc: JsPdf; handlers: IHandlers; svgString: string; data: Svg2PdfOptions }) => {
-  const { doc, handlers, svgString, data = {} } = p;
+const handleAddSvgFromString = (p: { doc: JsPdf; handlers: IHandlers; svgString: string; options: Svg2PdfOptions }) => {
+  const { doc, handlers, svgString, options = {} } = p;
   const svg = parseSvg(svgString);
 
   const { svgEl, elements } = getSvgElements(handlers, svg);
-  const { x = 0, y = 0, width, height } = data;
+  const { x = 0, y = 0, width, height } = options;
 
   elements.forEach((el) => {
     const handler = handlers.get(el.tagName);
@@ -51,7 +51,7 @@ const handleAddSvgFromString = (p: { doc: JsPdf; handlers: IHandlers; svgString:
   });
 };
 
-const handleAddSvgFromFile = (p: { doc: JsPdf; handlers: IHandlers; filePath: string; data: Svg2PdfOptions }) => {
+const handleAddSvgFromFile = (p: { doc: JsPdf; handlers: IHandlers; filePath: string; options: Svg2PdfOptions }) => {
   return handleAddSvgFromString({ ...p, svgString: readFileSync(p.filePath, "utf-8") });
 };
 
@@ -71,19 +71,19 @@ export class Svg2Pdf {
     this.handlers.set(tagName, handler);
   }
 
-  fromString(svgString: string, data: Svg2PdfOptions = {}) {
-    handleAddSvgFromString({ doc: this.doc, handlers: this.handlers, svgString: svgString, data: data });
+  fromString(svgString: string, options: Svg2PdfOptions = {}) {
+    handleAddSvgFromString({ doc: this.doc, handlers: this.handlers, svgString: svgString, options: options });
   }
 
-  fromFile(filePath: string, data: Svg2PdfOptions = {}) {
-    handleAddSvgFromFile({ doc: this.doc, handlers: this.handlers, filePath: filePath, data: data });
+  fromFile(filePath: string, options: Svg2PdfOptions = {}) {
+    handleAddSvgFromFile({ doc: this.doc, handlers: this.handlers, filePath: filePath, options: options });
   }
 }
 
-export const addSvgFromString = (doc: JsPdf, svgString: string, data: Svg2PdfOptions = {}) => {
-  handleAddSvgFromString({ doc, svgString, data, handlers: Handlers });
+export const addSvgFromString = (doc: JsPdf, svgString: string, options: Svg2PdfOptions = {}) => {
+  handleAddSvgFromString({ doc, svgString, options, handlers: Handlers });
 };
 
-export const addSvgFromFile = (doc: JsPdf, filePath: string, data: Svg2PdfOptions = {}) => {
-  handleAddSvgFromFile({ doc, filePath, data, handlers: Handlers });
+export const addSvgFromFile = (doc: JsPdf, filePath: string, options: Svg2PdfOptions = {}) => {
+  handleAddSvgFromFile({ doc, filePath, options, handlers: Handlers });
 };

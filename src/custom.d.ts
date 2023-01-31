@@ -64,7 +64,7 @@ interface TSvgEl<T extends string, TProps extends Record<string, any>> {
   props: TProps;
 }
 
-type SvgEl<T extends string = ''> = T extends "path"
+type SvgEl<T extends string = ""> = T extends "path"
   ? TSvgEl<"path", SvgPathElProps>
   : T extends "polygon"
   ? TSvgEl<"polygon", SvgPolygonElProps>
@@ -80,16 +80,14 @@ type SvgEl<T extends string = ''> = T extends "path"
   ? TSvgEl<"svg", SvgSvgElProps>
   : TSvgEl<T, Record<string, number | string>>;
 
-export type SvgHandler<T extends string> = (
-  doc: JsPDF,
-  data: {
-    x: number;
-    y: number;
-    width?: number | "auto";
-    height?: number | "auto";
-    viewBox?: string;
-    svgWidth: number;
-    svgHeight: number;
-  },
-  elements: SvgEl<T>
-) => void;
+interface SvgHandlerData {
+  x: number;
+  y: number;
+  width?: number | "auto";
+  height?: number | "auto";
+  viewBox?: string;
+  svgWidth: number;
+  svgHeight: number;
+}
+
+export type SvgHandler<T extends string> = (doc: JsPDF, data: SvgHandlerData, elements: SvgEl<T>) => void;
