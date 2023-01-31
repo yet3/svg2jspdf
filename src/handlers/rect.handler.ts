@@ -4,9 +4,9 @@ import { handleWidthAndHeight } from "../utils/widthAndHeight.util";
 
 export const svgRectHandler: SvgHandler<"rect"> = (doc, data, element) => {
   const { props } = element;
-  let { x, y, width, height, rx = 0, ry = 0 } = props;
-  if (x == null || y == null || width == null || height == null) {
-    throw Error("svgRectHandler: x, y, width, height props must be provided");
+  let { x = 0, y = 0, width, height, rx = 0, ry = 0 } = props;
+  if (width == null || height == null) {
+    throw Error("svgRectHandler: width, height props must be provided");
   }
 
   const { wScale, hScale, maxScale } = handleWidthAndHeight(data);

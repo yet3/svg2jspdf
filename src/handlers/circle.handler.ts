@@ -4,9 +4,9 @@ import { handleWidthAndHeight } from "../utils/widthAndHeight.util";
 
 export const svgCircleHandler: SvgHandler<"circle"> = (doc, data, element) => {
   const { props } = element;
-  let { cx, cy } = props;
+  let { cx = 0, cy = 0 } = props;
   const { r } = props;
-  if (cx == null || cy == null || r == null) {
+  if (r == null) {
     throw Error("svgCircleHandler: cx, cy, r props must be provided");
   }
 
