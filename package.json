@@ -6,11 +6,11 @@
   "author": "yet3",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./dist && tsc --project ./tsconfig.json && cp ./src/custom.d.ts ./dist/index.d.ts",
+    "build": "rm -rf ./dist && tsc --project ./tsconfig.json && cp ./src/custom.d.ts ./dist/",
     "dev": "ts-node ./src/index.ts",
     "test": "jest",
     "format": "prettier --write ./src/**/*.ts",
-    "prepare": "husky install"
+    "prepublishOnly": "npm test && npm run build"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
