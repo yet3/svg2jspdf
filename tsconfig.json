@@ -2,8 +2,11 @@
   "compilerOptions": {
     "strict": true,
     "noImplicitAny": true,
+    "esModuleInterop": true,
     "outDir": "./dist",
-    "esModuleInterop": true
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true
   },
   "include": ["./src/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]
