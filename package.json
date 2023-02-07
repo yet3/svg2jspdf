@@ -1,7 +1,7 @@
 {
   "name": "@yet3/svg2jspdf",
   "description": "Insert simple svgs into pdf as paths (for jsPDF)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "yet3",
